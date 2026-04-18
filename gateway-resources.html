@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Gateway Corp — Resources</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #0A0908; --bg-2: #141110; --bg-3: #1F1A17;
+    --ink: #F5EFE0; --ink-dim: #B8AD98; --ink-faint: #6B6155;
+    --amber: #F59E0B; --amber-lite: #FBBF24;
+    --orange: #EA580C; --orange-lite: #FB923C;
+  }
+  * { -webkit-font-smoothing: antialiased; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; }
+  ::selection { background: var(--amber); color: var(--bg); }
+  ::-webkit-scrollbar { width: 8px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 4px; }
+
+  .font-serif { font-family: 'Fraunces', Georgia, serif; }
+
+  @keyframes meshFlow1 { 0%, 100% { transform: translate(0%, 0%) scale(1); } 50% { transform: translate(8%, -10%) scale(1.1); } }
+  @keyframes meshFlow2 { 0%, 100% { transform: translate(0%, 0%) scale(1); } 50% { transform: translate(-10%, 8%) scale(1.05); } }
+  @keyframes meshFlow3 { 0%, 100% { transform: translate(0%, 0%) scale(1); } 50% { transform: translate(12%, 10%) scale(0.95); } }
+  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  .animate-marquee { animation: marquee 60s linear infinite; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulseSoft { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes shimmer-line { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+  @keyframes wordSlide { 0% { opacity: 0; transform: translateY(100%); } 100% { opacity: 1; transform: translateY(0); } }
+
+  .fade-in-up { opacity: 0; transform: translateY(60px); transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1); }
+  .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+  .stagger-1 { transition-delay: 0.05s; } .stagger-2 { transition-delay: 0.15s; } .stagger-3 { transition-delay: 0.25s; }
+  .stagger-4 { transition-delay: 0.35s; } .stagger-5 { transition-delay: 0.45s; } .stagger-6 { transition-delay: 0.55s; }
+
+  .hero-1 { animation: slideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .hero-2 { animation: slideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both; }
+  .hero-3 { animation: slideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both; }
+  .hero-4 { animation: slideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.55s both; }
+  .hero-5 { animation: slideUp 1.2s cubic-bezier(0.22, 1, 0.36, 1) 0.75s both; }
+
+  .rotating-word { animation: wordSlide 0.8s cubic-bezier(0.22, 1, 0.36, 1); display: inline-block; color: var(--amber-lite); font-style: italic; font-weight: 400; }
+  .pulse-dot { animation: pulseSoft 2s ease-in-out infinite; }
+  .float { animation: float 4s ease-in-out infinite; }
+  .spin-slow { animation: spin-slow 20s linear infinite; }
+
+  /* POST CARD ANIMATIONS */
+  .post-card {
+    transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    background: var(--bg-2);
+    border: 1px solid rgba(245,239,224,0.08);
+    overflow: hidden;
+  }
+  .post-card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(245, 158, 11, 0.5);
+    box-shadow: 0 40px 80px -20px rgba(245, 158, 11, 0.25), 0 0 0 1px rgba(245, 158, 11, 0.2);
+  }
+  .post-image-wrap { position: relative; overflow: hidden; aspect-ratio: 16/10; }
+  .post-img { transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease; will-change: transform, filter; width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .post-card:hover .post-img { transform: scale(1.15) rotate(1deg); filter: brightness(1.15) saturate(1.3) contrast(1.05); }
+
+  .post-image-wrap::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, transparent 40%, rgba(245, 158, 11, 0.4) 80%, rgba(234, 88, 12, 0.6) 100%);
+    transform: translateY(100%);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none; z-index: 2;
+  }
+  .post-card:hover .post-image-wrap::after { transform: translateY(0); }
+
+  .post-image-wrap::before {
+    content: ''; position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none; z-index: 3;
+  }
+  .post-card:hover .post-image-wrap::before { left: 120%; }
+
+  .post-title { transition: color 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); color: var(--ink); }
+  .post-card:hover .post-title { color: var(--amber-lite); transform: translateX(4px); }
+
+  .post-tag { transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1); transform: translateY(0); }
+  .post-card:hover .post-tag { transform: translateY(-4px); background: var(--amber) !important; color: var(--bg) !important; border-color: var(--amber) !important; }
+
+  .post-arrow { transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  .post-card:hover .post-arrow { opacity: 1 !important; transform: translate(0,0) rotate(0deg); background: var(--amber-lite); color: var(--bg); border-color: var(--amber-lite); }
+
+  .post-meta { transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+  .post-card:hover .post-meta { transform: translateX(4px); }
+
+  .post-read-bar { position: relative; overflow: hidden; height: 2px; background: rgba(245, 158, 11, 0.15); border-radius: 2px; }
+  .post-read-bar::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--amber), var(--amber-lite));
+    transform: translateX(-100%);
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .post-card:hover .post-read-bar::after { transform: translateX(0); }
+
+  /* FEATURED CARD */
+  .featured-card { transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1); background: var(--bg-2); border: 1px solid rgba(245,239,224,0.08); overflow: hidden; }
+  .featured-card:hover { transform: translateY(-8px); box-shadow: 0 50px 100px -30px rgba(245, 158, 11, 0.3); }
+  .featured-img { transition: transform 1.4s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s ease; width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .featured-card:hover .featured-img { transform: scale(1.08); filter: brightness(1.1) saturate(1.2); }
+  .featured-title { transition: color 0.5s ease; color: var(--ink); }
+  .featured-card:hover .featured-title { color: var(--amber-lite); }
+  .featured-arrow { transition: all 0.5s ease; border: 1px solid var(--ink-dim); color: var(--ink); }
+  .featured-card:hover .featured-arrow { background: var(--amber); color: var(--bg); border-color: var(--amber); transform: rotate(45deg) scale(1.1); }
+  .featured-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(245,158,11,0) 0%, rgba(245,158,11,0.15) 50%, rgba(234,88,12,0.25) 100%); opacity: 0; transition: opacity 0.8s ease; pointer-events: none; }
+  .featured-card:hover .featured-overlay { opacity: 1; }
+
+  /* EVENT CARD */
+  .event-card { transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1); background: var(--bg-2); border: 1px solid rgba(245,239,224,0.1); overflow: hidden; }
+  .event-card:hover { transform: translateY(-10px); border-color: var(--amber); box-shadow: 0 35px 70px -20px rgba(245, 158, 11, 0.3); }
+  .event-img { transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), filter 0.6s ease; width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+  .event-card:hover .event-img { transform: scale(1.12); filter: brightness(1.15) saturate(1.2); }
+  .event-scan { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(245,158,11,0.6) 50%, transparent 55%); transform: translateY(-100%); transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); pointer-events: none; z-index: 2; mix-blend-mode: overlay; }
+  .event-card:hover .event-scan { transform: translateY(100%); }
+  .event-title { transition: color 0.5s ease; color: var(--ink); }
+  .event-card:hover .event-title { color: var(--amber-lite); }
+  .event-card:hover .event-tag { background: var(--amber) !important; color: var(--bg) !important; border-color: var(--amber) !important; }
+
+  /* NAV / UI */
+  .nav-link { position: relative; transition: color 0.4s ease; color: var(--ink-dim); }
+  .nav-link::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 1px; background: var(--amber-lite); transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
+  .nav-link:hover { color: var(--ink); } .nav-link:hover::after { width: 100%; }
+
+  .filter-chip { transition: all 0.3s ease; }
+  .filter-chip:hover:not(.active) { border-color: var(--amber-lite); color: var(--ink); transform: translateY(-2px); }
+
+  .btn-primary { transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1); background: var(--amber); color: var(--bg); border: 1px solid var(--amber); }
+  .btn-primary:hover { background: var(--amber-lite); border-color: var(--amber-lite); transform: translateY(-2px); box-shadow: 0 20px 40px -10px rgba(245,158,11,0.5); }
+  .btn-primary:hover .btn-arrow { transform: translate(3px, -3px); }
+
+  .btn-ghost { transition: all 0.4s ease; }
+  .btn-ghost:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn-ghost:hover svg { transform: translate(3px, -3px); }
+
+  .shimmer-divider { background: linear-gradient(90deg, transparent, var(--amber), transparent); background-size: 200% 100%; animation: shimmer-line 4s ease-in-out infinite; height: 1px; }
+
+  .big-headline em { color: var(--amber-lite); font-style: italic; font-weight: 400; }
+
+  .section-label { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--ink-dim); font-weight: 600; }
+  .section-label::before { content: ''; width: 28px; height: 1px; background: var(--amber-lite); }
+
+  .tag-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700; background: rgba(245, 158, 11, 0.12); color: var(--amber-lite); border: 1px solid rgba(245, 158, 11, 0.3); }
+
+  .story-row { transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1); position: relative; display: block; padding: 2rem 0; border-top: 1px solid rgba(245,239,224,0.1); overflow: hidden; }
+  .story-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: linear-gradient(90deg, rgba(245,158,11,0.08), transparent); transition: width 0.5s cubic-bezier(0.22, 1, 0.36, 1); }
+  .story-row:hover { padding-left: 32px; }
+  .story-row:hover::before { width: 100%; }
+  .story-title { transition: color 0.5s ease; color: var(--ink); }
+  .story-row:hover .story-title { color: var(--amber-lite); }
+  .story-arrow { opacity: 0; transform: translateX(-16px); transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1); position: absolute; right: 1rem; top: 2.5rem; color: var(--ink); }
+  .story-row:hover .story-arrow { opacity: 1; transform: translateX(0) rotate(-45deg); color: var(--amber-lite); }
+  .story-num { transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1); color: var(--amber-lite); }
+  .story-row:hover .story-num { color: var(--amber); transform: translateX(-8px); }
+
+  .grain::before { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 2; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.12; mix-blend-mode: overlay; }
+
+  .contact-btn { transition: all 0.3s ease; }
+  .contact-btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  .footer-link { transition: color 0.3s ease; color: var(--ink-dim); }
+  .footer-link:hover { color: var(--amber-lite); }
+</style>
+</head>
+<body>
+
+<!-- GRADIENT MESH BG -->
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+  <div class="absolute rounded-full" style="width: 900px; height: 900px; top: -20%; left: -10%; filter: blur(120px); background: radial-gradient(circle, rgba(245, 158, 11, 0.35), transparent 70%); animation: meshFlow1 22s ease-in-out infinite;"></div>
+  <div class="absolute rounded-full" style="width: 800px; height: 800px; top: 30%; right: -15%; filter: blur(120px); background: radial-gradient(circle, rgba(234, 88, 12, 0.3), transparent 70%); animation: meshFlow2 28s ease-in-out infinite;"></div>
+  <div class="absolute rounded-full" style="width: 700px; height: 700px; bottom: -10%; left: 30%; filter: blur(140px); background: radial-gradient(circle, rgba(251, 191, 36, 0.25), transparent 70%); animation: meshFlow3 26s ease-in-out infinite;"></div>
+  <div class="absolute rounded-full" style="width: 600px; height: 600px; bottom: 20%; right: 20%; filter: blur(120px); background: radial-gradient(circle, rgba(251, 146, 60, 0.28), transparent 70%); animation: meshFlow1 30s ease-in-out infinite reverse;"></div>
+</div>
+
+<div class="grain"></div>
+
+<!-- Cursor glow -->
+<div id="cursor-glow" class="pointer-events-none fixed rounded-full z-[1] opacity-40" style="width: 450px; height: 450px; left: -225px; top: -225px; background: radial-gradient(circle, rgba(251,191,36,0.35), transparent 70%); transition: left 0.2s ease-out, top 0.2s ease-out; mix-blend-mode: screen;"></div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 px-6 lg:px-10 py-5" style="background: rgba(10,9,8,0.75); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(245,239,224,0.08);">
+  <div class="max-w-[1600px] mx-auto flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="relative w-10 h-10 rounded-full border flex items-center justify-center" style="border-color: var(--amber-lite);">
+        <div class="spin-slow absolute inset-0 rounded-full opacity-60" style="background: conic-gradient(from 0deg, transparent, var(--amber-lite), transparent);"></div>
+        <div class="relative w-2.5 h-2.5 rotate-45" style="background: var(--amber-lite);"></div>
+      </div>
+      <div class="flex flex-col leading-none">
+        <span class="text-[11px] tracking-[0.3em] uppercase" style="color: var(--ink-dim);">The Gateway</span>
+        <span class="text-sm font-semibold tracking-tight">Corp — Resources</span>
+      </div>
+    </div>
+    <div class="hidden lg:flex items-center gap-8 text-sm font-medium">
+      <a href="#" class="nav-link">Blog</a>
+      <a href="#" class="nav-link">Case Studies</a>
+      <a href="#" class="nav-link">Events & Media</a>
+      <a href="#" class="nav-link">Reports</a>
+      <a href="#" class="nav-link">Newsletter</a>
+    </div>
+    <a href="#" class="btn-primary flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold">Subscribe <svg class="btn-arrow transition-transform" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative pt-40 pb-20 px-6 lg:px-10 z-10">
+  <div class="max-w-[1600px] mx-auto w-full">
+    <div class="flex items-center justify-between mb-16 text-xs tracking-[0.25em] uppercase hero-1 font-semibold" style="color: var(--ink-dim);">
+      <div class="flex items-center gap-6">
+        <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full pulse-dot" style="background: var(--amber-lite);"></span>The Gateway Journal</span>
+        <span class="hidden md:inline">Edition 2026 · Vol. 29</span>
+      </div>
+      <span class="hidden md:inline">Published weekly · 130+ articles</span>
+    </div>
+    <div class="relative">
+      <div class="absolute -top-10 left-0 hero-1 section-label">§ 01 — Resources</div>
+      <h1 class="big-headline leading-[0.85] tracking-tighter font-serif">
+        <span class="block font-light hero-2" style="font-size: clamp(2.5rem, 7.5vw, 8.5rem);">The field notes</span>
+        <span class="block font-light italic hero-3" style="font-size: clamp(2.5rem, 7.5vw, 8.5rem); color: var(--ink-dim);">of a global</span>
+        <span class="block font-light hero-4" style="font-size: clamp(2.5rem, 7.5vw, 8.5rem);">engineering house — <em id="rotating-word" class="rotating-word">ideas.</em></span>
+      </h1>
+      <div class="mt-16 grid md:grid-cols-12 gap-8 items-end hero-5">
+        <p class="md:col-span-5 text-lg leading-relaxed font-light" style="color: var(--ink-dim);">Essays, case studies, research reports and dispatches from inside 130+ Fortune 500 engagements. Written by the people actually doing the work.</p>
+        <div class="md:col-span-4 md:col-start-7 flex gap-3">
+          <a href="#blog" class="btn-primary flex-1 px-6 py-4 rounded-full font-semibold text-sm flex items-center justify-between">Browse the blog <svg class="btn-arrow transition-transform" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+          <a href="#events" class="btn-ghost px-6 py-4 rounded-full font-semibold text-sm flex items-center gap-2 border" style="border-color: rgba(245,239,224,0.3);">Events <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="shimmer-divider"></div>
+
+<!-- MARQUEE -->
+<section class="py-14 relative z-10 overflow-hidden border-y" style="border-color: rgba(245,239,224,0.1);">
+  <div class="flex gap-16 animate-marquee whitespace-nowrap">
+    <!-- Duplicated for seamless loop -->
+    <div class="flex items-center gap-16 shrink-0">
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--ink);">AI & Data</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--amber-lite);">Cloud Economics</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--ink);">BFSI Modernization</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--amber-lite);">Automotive + AI</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--ink);">Design-Led Consulting</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+    </div>
+    <div class="flex items-center gap-16 shrink-0">
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--ink);">AI & Data</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--amber-lite);">Cloud Economics</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--ink);">BFSI Modernization</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--amber-lite);">Automotive + AI</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+      <span class="font-light italic font-serif" style="font-size: clamp(2.5rem, 6vw, 6rem); color: var(--ink);">Design-Led Consulting</span>
+      <span class="text-5xl" style="color: var(--ink-faint);">◆</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED -->
+<section id="featured" data-animate class="px-6 lg:px-10 py-24 relative z-10">
+  <div class="max-w-[1600px] mx-auto">
+    <div class="flex items-end justify-between mb-10 fade-in-up">
+      <div>
+        <div class="section-label mb-3">§ 02 — Editor's pick</div>
+        <h2 class="text-3xl md:text-4xl font-light big-headline font-serif">This week, <em>we're reading</em></h2>
+      </div>
+      <a href="#" class="hidden md:flex items-center gap-2 text-sm font-semibold" style="color: var(--ink-dim);">All articles <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+    </div>
+
+    <a href="#" class="featured-card group block rounded-3xl relative fade-in-up">
+      <div class="grid md:grid-cols-12 relative">
+        <div class="md:col-span-7 relative overflow-hidden" style="min-height: 480px;">
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1400&q=80&auto=format&fit=crop" alt="AI" class="featured-img" loading="lazy" />
+          <div class="absolute inset-0" style="background: linear-gradient(90deg, transparent 60%, rgba(10,9,8,0.4));"></div>
+          <div class="featured-overlay"></div>
+          <div class="absolute top-6 left-6 z-10"><span class="tag-pill">⚡ Featured</span></div>
+        </div>
+        <div class="md:col-span-5 p-8 md:p-12 flex flex-col justify-between relative z-10">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <span class="tag-pill">AI & Automation</span>
+              <span class="text-xs font-medium" style="color: var(--ink-dim);">9 min read</span>
+            </div>
+            <h3 class="featured-title text-3xl md:text-4xl lg:text-5xl font-light leading-[1.1] mb-6 font-serif">The Agentic Enterprise: How Autonomous AI Is Rewriting Fortune 500 Workflows</h3>
+            <p class="text-base leading-relaxed font-light" style="color: var(--ink-dim);">From claims processing to supply-chain orchestration, agentic systems are quietly replacing the stack we spent a decade building. Here's what the next 18 months will look like — and what to tear down first.</p>
+          </div>
+          <div class="flex items-center justify-between mt-10 pt-8 border-t" style="border-color: rgba(245,239,224,0.1);">
+            <div>
+              <div class="font-semibold text-sm">Niraj Gemawat</div>
+              <div class="text-xs mt-1" style="color: var(--ink-dim);">Founder & CEO, TGC · April 12, 2026</div>
+            </div>
+            <div class="featured-arrow w-12 h-12 rounded-full flex items-center justify-center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<section class="sticky top-[76px] z-40" style="background: rgba(10,9,8,0.85); backdrop-filter: blur(20px); border-top: 1px solid rgba(245,239,224,0.08); border-bottom: 1px solid rgba(245,239,224,0.08);">
+  <div class="max-w-[1600px] mx-auto px-6 lg:px-10 py-4 flex items-center gap-3 overflow-x-auto">
+    <span class="text-xs tracking-widest uppercase shrink-0 font-bold" style="color: var(--ink-dim);">Filter —</span>
+    <button class="filter-chip active shrink-0 px-4 py-2 rounded-full text-sm border font-medium flex items-center gap-2" style="background: var(--amber); border-color: var(--amber); color: var(--bg);">All <span class="text-[10px] opacity-70">24</span></button>
+    <button class="filter-chip shrink-0 px-4 py-2 rounded-full text-sm border font-medium flex items-center gap-2" style="border-color: rgba(245,239,224,0.2); color: var(--ink-dim);">AI & Data <span class="text-[10px] opacity-70">8</span></button>
+    <button class="filter-chip shrink-0 px-4 py-2 rounded-full text-sm border font-medium flex items-center gap-2" style="border-color: rgba(245,239,224,0.2); color: var(--ink-dim);">Cloud <span class="text-[10px] opacity-70">5</span></button>
+    <button class="filter-chip shrink-0 px-4 py-2 rounded-full text-sm border font-medium flex items-center gap-2" style="border-color: rgba(245,239,224,0.2); color: var(--ink-dim);">BFSI <span class="text-[10px] opacity-70">4</span></button>
+    <button class="filter-chip shrink-0 px-4 py-2 rounded-full text-sm border font-medium flex items-center gap-2" style="border-color: rgba(245,239,224,0.2); color: var(--ink-dim);">Automotive <span class="text-[10px] opacity-70">3</span></button>
+    <button class="filter-chip shrink-0 px-4 py-2 rounded-full text-sm border font-medium flex items-center gap-2" style="border-color: rgba(245,239,224,0.2); color: var(--ink-dim);">Design <span class="text-[10px] opacity-70">4</span></button>
+    <span class="ml-auto text-xs hidden md:inline shrink-0 font-medium" style="color: var(--ink-dim);">Sorted by latest</span>
+  </div>
+</section>
+
+<!-- BLOG GRID -->
+<section id="blog" data-animate class="px-6 lg:px-10 py-24 relative z-10">
+  <div class="max-w-[1600px] mx-auto">
+    <div class="flex items-end justify-between mb-12 fade-in-up">
+      <div>
+        <div class="section-label mb-3">§ 03 — The blog</div>
+        <h2 class="text-4xl md:text-6xl font-light leading-[1.05] big-headline font-serif">Latest <em>dispatches.</em></h2>
+      </div>
+    </div>
+    <div class="grid grid-cols-12 gap-6">
+      <!-- Card 1 -->
+      <a href="#" class="post-card group block col-span-12 md:col-span-6 lg:col-span-4 rounded-2xl fade-in-up stagger-1">
+        <div class="post-image-wrap">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&q=80&auto=format&fit=crop" alt="BFSI" class="post-img" loading="lazy" />
+          <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, transparent 50%, rgba(10,9,8,0.5));"></div>
+          <div class="absolute top-4 left-4 z-[4]"><span class="tag-pill post-tag">📈 BFSI</span></div>
+        </div>
+        <div class="p-6 flex flex-col gap-4">
+          <h3 class="post-title text-xl md:text-2xl font-light leading-[1.2] font-serif">Cutting claims cycle time by 63% for a European insurer</h3>
+          <div class="post-read-bar"></div>
+          <div class="post-meta flex items-center justify-between pt-2">
+            <div class="flex flex-col gap-0.5">
+              <span class="text-xs font-semibold">Priya Shah</span>
+              <div class="flex items-center gap-2 text-[11px]" style="color: var(--ink-dim);"><span>Apr 04, 2026</span><span class="opacity-40">·</span><span>6 min</span></div>
+            </div>
+            <div class="post-arrow w-9 h-9 rounded-full border flex items-center justify-center" style="border-color: rgba(245,239,224,0.3); color: var(--ink-dim); opacity: 0.5; transform: rotate(-45deg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+        </div>
+      </a>
+      <!-- Card 2 -->
+      <a href="#" class="post-card group block col-span-12 md:col-span-6 lg:col-span-4 rounded-2xl fade-in-up stagger-2">
+        <div class="post-image-wrap">
+          <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&q=80&auto=format&fit=crop" alt="Cloud" class="post-img" loading="lazy" />
+          <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, transparent 50%, rgba(10,9,8,0.5));"></div>
+          <div class="absolute top-4 left-4 z-[4]"><span class="tag-pill post-tag">📄 Cloud</span></div>
+        </div>
+        <div class="p-6 flex flex-col gap-4">
+          <h3 class="post-title text-xl md:text-2xl font-light leading-[1.2] font-serif">FinOps is dead. Long live platform economics.</h3>
+          <div class="post-read-bar"></div>
+          <div class="post-meta flex items-center justify-between pt-2">
+            <div class="flex flex-col gap-0.5">
+              <span class="text-xs font-semibold">Marcus van Dijk</span>
+              <div class="flex items-center gap-2 text-[11px]" style="color: var(--ink-dim);"><span>Apr 01, 2026</span><span class="opacity-40">·</span><span>7 min</span></div>
+            </div>
+            <div class="post-arrow w-9 h-9 rounded-full border flex items-center justify-center" style="border-color: rgba(245,239,224,0.3); color: var(--ink-dim); opacity: 0.5; transform: rotate(-45deg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+        </div>
+      </a>
+      <!-- Card 3 -->
+      <a href="#" class="post-card group block col-span-12 md:col-span-6 lg:col-span-4 rounded-2xl fade-in-up stagger-3">
+        <div class="post-image-wrap">
+          <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=900&q=80&auto=format&fit=crop" alt="Design" class="post-img" loading="lazy" />
+          <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, transparent 50%, rgba(10,9,8,0.5));"></div>
+          <div class="absolute top-4 left-4 z-[4]"><span class="tag-pill post-tag">🔖 Design</span></div>
+        </div>
+        <div class="p-6 flex flex-col gap-4">
+          <h3 class="post-title text-xl md:text-2xl font-light leading-[1.2] font-serif">Why the next decade belongs to design-led consulting</h3>
+          <div class="post-read-bar"></div>
+          <div class="post-meta flex items-center justify-between pt-2">
+            <div class="flex flex-col gap-0.5">
+              <span class="text-xs font-semibold">Alvarium Studio</span>
+              <div class="flex items-center gap-2 text-[11px]" style="color: var(--ink-dim);"><span>Mar 19, 2026</span><span class="opacity-40">·</span><span>5 min</span></div>
+            </div>
+            <div class="post-arrow w-9 h-9 rounded-full border flex items-center justify-center" style="border-color: rgba(245,239,224,0.3); color: var(--ink-dim); opacity: 0.5; transform: rotate(-45deg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+        </div>
+      </a>
+      <!-- Card 4 -->
+      <a href="#" class="post-card group block col-span-12 md:col-span-6 lg:col-span-4 rounded-2xl fade-in-up stagger-4">
+        <div class="post-image-wrap">
+          <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=900&q=80&auto=format&fit=crop" alt="Automotive" class="post-img" loading="lazy" />
+          <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, transparent 50%, rgba(10,9,8,0.5));"></div>
+          <div class="absolute top-4 left-4 z-[4]"><span class="tag-pill post-tag">📄 Automotive</span></div>
+        </div>
+        <div class="p-6 flex flex-col gap-4">
+          <h3 class="post-title text-xl md:text-2xl font-light leading-[1.2] font-serif">AutoDAP and the parts supply-chain puzzle</h3>
+          <div class="post-read-bar"></div>
+          <div class="post-meta flex items-center justify-between pt-2">
+            <div class="flex flex-col gap-0.5">
+              <span class="text-xs font-semibold">Hans Weber</span>
+              <div class="flex items-center gap-2 text-[11px]" style="color: var(--ink-dim);"><span>Mar 14, 2026</span><span class="opacity-40">·</span><span>8 min</span></div>
+            </div>
+            <div class="post-arrow w-9 h-9 rounded-full border flex items-center justify-center" style="border-color: rgba(245,239,224,0.3); color: var(--ink-dim); opacity: 0.5; transform: rotate(-45deg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+        </div>
+      </a>
+      <!-- Card 5 -->
+      <a href="#" class="post-card group block col-span-12 md:col-span-6 lg:col-span-4 rounded-2xl fade-in-up stagger-5">
+        <div class="post-image-wrap">
+          <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=900&q=80&auto=format&fit=crop" alt="AI" class="post-img" loading="lazy" />
+          <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, transparent 50%, rgba(10,9,8,0.5));"></div>
+          <div class="absolute top-4 left-4 z-[4]"><span class="tag-pill post-tag">📈 AI</span></div>
+        </div>
+        <div class="p-6 flex flex-col gap-4">
+          <h3 class="post-title text-xl md:text-2xl font-light leading-[1.2] font-serif">Prompt engineering is a temporary job</h3>
+          <div class="post-read-bar"></div>
+          <div class="post-meta flex items-center justify-between pt-2">
+            <div class="flex flex-col gap-0.5">
+              <span class="text-xs font-semibold">Dr. Anjali Rao</span>
+              <div class="flex items-center gap-2 text-[11px]" style="color: var(--ink-dim);"><span>Mar 08, 2026</span><span class="opacity-40">·</span><span>4 min</span></div>
+            </div>
+            <div class="post-arrow w-9 h-9 rounded-full border flex items-center justify-center" style="border-color: rgba(245,239,224,0.3); color: var(--ink-dim); opacity: 0.5; transform: rotate(-45deg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+        </div>
+      </a>
+      <!-- Card 6 -->
+      <a href="#" class="post-card group block col-span-12 md:col-span-6 lg:col-span-4 rounded-2xl fade-in-up stagger-6">
+        <div class="post-image-wrap">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80&auto=format&fit=crop" alt="Report" class="post-img" loading="lazy" />
+          <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, transparent 50%, rgba(10,9,8,0.5));"></div>
+          <div class="absolute top-4 left-4 z-[4]"><span class="tag-pill post-tag">📄 Report</span></div>
+        </div>
+        <div class="p-6 flex flex-col gap-4">
+          <h3 class="post-title text-xl md:text-2xl font-light leading-[1.2] font-serif">The State of Digital Engineering — 2026 Edition</h3>
+          <div class="post-read-bar"></div>
+          <div class="post-meta flex items-center justify-between pt-2">
+            <div class="flex flex-col gap-0.5">
+              <span class="text-xs font-semibold">TGC Research</span>
+              <div class="flex items-center gap-2 text-[11px]" style="color: var(--ink-dim);"><span>Mar 28, 2026</span><span class="opacity-40">·</span><span>48 pages</span></div>
+            </div>
+            <div class="post-arrow w-9 h-9 rounded-full border flex items-center justify-center" style="border-color: rgba(245,239,224,0.3); color: var(--ink-dim); opacity: 0.5; transform: rotate(-45deg);"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></div>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="flex items-center justify-center mt-16">
+      <a href="#" class="btn-ghost border px-8 py-4 rounded-full font-semibold text-sm flex items-center gap-3" style="border-color: rgba(245,239,224,0.3); color: var(--ink);">Load more articles <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section id="events" data-animate class="px-6 lg:px-10 py-24 relative z-10 border-t" style="border-color: rgba(245,239,224,0.1);">
+  <div class="max-w-[1600px] mx-auto">
+    <div class="grid md:grid-cols-12 gap-10 mb-12 fade-in-up">
+      <div class="md:col-span-5"><div class="section-label mb-3">§ 04 — Events & Media</div></div>
+      <div class="md:col-span-7"><h2 class="text-4xl md:text-6xl font-light leading-[1.05] big-headline font-serif">Where to find <em>us next.</em></h2></div>
+    </div>
+    <div class="grid grid-cols-12 gap-5">
+      <!-- Event 1 -->
+      <article class="event-card group col-span-12 md:col-span-4 rounded-2xl fade-in-up stagger-1">
+        <div class="relative overflow-hidden" style="aspect-ratio: 16/10;">
+          <img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80&auto=format&fit=crop" alt="Keynote" class="event-img" loading="lazy" />
+          <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(10,9,8,0.3), rgba(10,9,8,0.7));"></div>
+          <div class="event-scan"></div>
+          <div class="absolute top-4 left-4 right-4 z-[3] flex items-center justify-between">
+            <span class="tag-pill event-tag">🎤 KEYNOTE</span>
+            <span class="text-[10px] px-2.5 py-1 rounded-full flex items-center gap-1.5 font-bold" style="background: var(--amber); color: var(--bg);"><span class="w-1 h-1 rounded-full pulse-dot" style="background: var(--bg);"></span>LIVE</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="event-title text-xl md:text-2xl font-light mb-6 leading-tight font-serif">AI in Automotive Aftermarket</h3>
+          <div class="flex items-center justify-between text-xs font-medium pt-4 border-t" style="border-color: rgba(245,239,224,0.08); color: var(--ink-dim);"><span>Automechanika Frankfurt</span><span class="tabular-nums">Sep 09, 2026</span></div>
+        </div>
+      </article>
+      <!-- Event 2 -->
+      <article class="event-card group col-span-12 md:col-span-4 rounded-2xl fade-in-up stagger-2">
+        <div class="relative overflow-hidden" style="aspect-ratio: 16/10;">
+          <img src="https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&q=80&auto=format&fit=crop" alt="Webinar" class="event-img" loading="lazy" />
+          <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(10,9,8,0.3), rgba(10,9,8,0.7));"></div>
+          <div class="event-scan"></div>
+          <div class="absolute top-4 left-4 right-4 z-[3] flex items-center justify-between">
+            <span class="tag-pill event-tag">📹 WEBINAR</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="event-title text-xl md:text-2xl font-light mb-6 leading-tight font-serif">Cloud economics after the FinOps boom</h3>
+          <div class="flex items-center justify-between text-xs font-medium pt-4 border-t" style="border-color: rgba(245,239,224,0.08); color: var(--ink-dim);"><span>Online · Panel of 4</span><span class="tabular-nums">May 14, 2026</span></div>
+        </div>
+      </article>
+      <!-- Event 3 -->
+      <article class="event-card group col-span-12 md:col-span-4 rounded-2xl fade-in-up stagger-3">
+        <div class="relative overflow-hidden" style="aspect-ratio: 16/10;">
+          <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&q=80&auto=format&fit=crop" alt="Podcast" class="event-img" loading="lazy" />
+          <div class="absolute inset-0 z-[1]" style="background: linear-gradient(180deg, rgba(10,9,8,0.3), rgba(10,9,8,0.7));"></div>
+          <div class="event-scan"></div>
+          <div class="absolute top-4 left-4 right-4 z-[3] flex items-center justify-between">
+            <span class="tag-pill event-tag">🎙️ PODCAST</span>
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="event-title text-xl md:text-2xl font-light mb-6 leading-tight font-serif">Ep. 42 — The design-led CTO</h3>
+          <div class="flex items-center justify-between text-xs font-medium pt-4 border-t" style="border-color: rgba(245,239,224,0.08); color: var(--ink-dim);"><span>Gateway Signals</span><span class="tabular-nums">Weekly</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDIES -->
+<section id="longread" data-animate class="px-6 lg:px-10 py-24 relative z-10 border-t" style="border-color: rgba(245,239,224,0.1);">
+  <div class="max-w-[1600px] mx-auto grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-4 fade-in-up">
+      <div class="sticky top-32">
+        <div class="section-label mb-6">§ 05 — Case studies</div>
+        <h2 class="text-4xl md:text-5xl font-light leading-[0.95] big-headline font-serif">Stories, <em>not</em> specs.</h2>
+        <p class="mt-6 text-sm font-light leading-relaxed" style="color: var(--ink-dim);">Every engagement is a problem nobody has solved this way before. We document the hard ones.</p>
+        <a href="#" class="inline-flex items-center gap-2 mt-6 text-sm font-semibold" style="color: var(--amber-lite);">All case studies <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+      </div>
+    </div>
+    <div class="md:col-span-8">
+      <a href="#" class="story-row group fade-in-up stagger-1">
+        <div class="grid grid-cols-12 gap-4 items-baseline relative z-[1]">
+          <span class="story-num col-span-2 md:col-span-1 text-xs tracking-widest font-bold">01</span>
+          <div class="col-span-8 md:col-span-9"><h3 class="story-title text-xl md:text-3xl font-light font-serif">Inside the Leap platform rebuild</h3><p class="mt-2 text-sm font-medium" style="color: var(--ink-dim);">6 weeks · 3 continents · zero downtime migration</p></div>
+          <span class="col-span-2 text-xs text-right tabular-nums font-semibold" style="color: var(--ink-dim);">04.2026</span>
+        </div>
+        <svg class="story-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="#" class="story-row group fade-in-up stagger-2">
+        <div class="grid grid-cols-12 gap-4 items-baseline relative z-[1]">
+          <span class="story-num col-span-2 md:col-span-1 text-xs tracking-widest font-bold">02</span>
+          <div class="col-span-8 md:col-span-9"><h3 class="story-title text-xl md:text-3xl font-light font-serif">FinFacets: teaching an old ledger new tricks</h3><p class="mt-2 text-sm font-medium" style="color: var(--ink-dim);">How we reimagined reconciliation for a 40-year-old bank</p></div>
+          <span class="col-span-2 text-xs text-right tabular-nums font-semibold" style="color: var(--ink-dim);">03.2026</span>
+        </div>
+        <svg class="story-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="#" class="story-row group fade-in-up stagger-3">
+        <div class="grid grid-cols-12 gap-4 items-baseline relative z-[1]">
+          <span class="story-num col-span-2 md:col-span-1 text-xs tracking-widest font-bold">03</span>
+          <div class="col-span-8 md:col-span-9"><h3 class="story-title text-xl md:text-3xl font-light font-serif">Dismanto — circular economy, coded</h3><p class="mt-2 text-sm font-medium" style="color: var(--ink-dim);">Building a marketplace for what the world throws away</p></div>
+          <span class="col-span-2 text-xs text-right tabular-nums font-semibold" style="color: var(--ink-dim);">03.2026</span>
+        </div>
+        <svg class="story-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="#" class="story-row group fade-in-up stagger-4">
+        <div class="grid grid-cols-12 gap-4 items-baseline relative z-[1]">
+          <span class="story-num col-span-2 md:col-span-1 text-xs tracking-widest font-bold">04</span>
+          <div class="col-span-8 md:col-span-9"><h3 class="story-title text-xl md:text-3xl font-light font-serif">AutoDAP and the parts supply-chain puzzle</h3><p class="mt-2 text-sm font-medium" style="color: var(--ink-dim);">The 3 AM production call that became a product</p></div>
+          <span class="col-span-2 text-xs text-right tabular-nums font-semibold" style="color: var(--ink-dim);">02.2026</span>
+        </div>
+        <svg class="story-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="#" class="story-row group fade-in-up stagger-5">
+        <div class="grid grid-cols-12 gap-4 items-baseline relative z-[1]">
+          <span class="story-num col-span-2 md:col-span-1 text-xs tracking-widest font-bold">05</span>
+          <div class="col-span-8 md:col-span-9"><h3 class="story-title text-xl md:text-3xl font-light font-serif">Why we open-sourced our design system</h3><p class="mt-2 text-sm font-medium" style="color: var(--ink-dim);">And what 2,100 forks taught us about developer trust</p></div>
+          <span class="col-span-2 text-xs text-right tabular-nums font-semibold" style="color: var(--ink-dim);">01.2026</span>
+        </div>
+        <svg class="story-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter" data-animate class="px-6 lg:px-10 py-24 relative z-10">
+  <div class="max-w-[1600px] mx-auto">
+    <div class="rounded-3xl p-10 md:p-20 relative overflow-hidden fade-in-up" style="background: var(--amber); color: var(--bg);">
+      <div class="absolute -top-20 -right-20 w-96 h-96 rounded-full opacity-30" style="background: radial-gradient(circle, var(--orange), transparent 70%);"></div>
+      <div class="relative grid md:grid-cols-12 gap-10 items-end">
+        <div class="md:col-span-7">
+          <div class="section-label mb-6" style="color: rgba(10,9,8,0.7);">§ 06 — The Dispatch</div>
+          <h2 class="text-5xl md:text-7xl font-light leading-[0.9] font-serif">One email.<br /><em style="font-style: italic;">Every other Tuesday.</em></h2>
+          <p class="mt-6 max-w-lg font-medium text-base opacity-85">The sharpest thinking from our engineers, designers and industry leads. No fluff. No "synergies."</p>
+        </div>
+        <div class="md:col-span-5">
+          <div class="flex items-center gap-2 p-2 rounded-full border-2" style="border-color: rgba(10,9,8,0.3); background: rgba(10,9,8,0.1);">
+            <input type="email" placeholder="you@company.com" class="flex-1 bg-transparent px-4 py-2 focus:outline-none font-medium" style="color: var(--bg);" />
+            <button class="px-6 py-2.5 rounded-full text-sm font-semibold flex items-center gap-2 whitespace-nowrap transition-all hover:scale-105" style="background: var(--bg); color: var(--amber-lite);">Subscribe <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></button>
+          </div>
+          <div class="mt-4 text-xs flex items-center gap-4 font-medium opacity-70"><span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full pulse-dot" style="background: var(--bg);"></span>14,200+ readers</span><span>·</span><span>Unsubscribe anytime</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="px-6 lg:px-10 py-16 relative z-10 border-t" style="border-color: rgba(245,239,224,0.1);">
+  <div class="max-w-[1600px] mx-auto">
+    <div class="grid md:grid-cols-12 gap-10 mb-12">
+      <div class="md:col-span-5">
+        <div class="text-6xl md:text-8xl font-light leading-[0.85] font-serif">
+          <span>The</span><br />
+          <span class="italic" style="color: var(--amber-lite);">Gateway</span><br />
+          <span>Corp.</span>
+        </div>
+        <p class="mt-8 text-sm max-w-sm font-light" style="color: var(--ink-dim);">Design, code and consulting for enterprises that refuse to settle. Since 1997.</p>
+      </div>
+      <div class="md:col-span-7 grid grid-cols-2 md:grid-cols-3 gap-8 text-sm">
+        <div>
+          <div class="text-[10px] tracking-[0.3em] uppercase mb-6 font-bold" style="color: var(--amber-lite);">Resources</div>
+          <ul class="space-y-3"><li><a href="#" class="footer-link font-medium">Blog</a></li><li><a href="#" class="footer-link font-medium">Case Studies</a></li><li><a href="#" class="footer-link font-medium">Reports</a></li><li><a href="#" class="footer-link font-medium">Events</a></li><li><a href="#" class="footer-link font-medium">Newsletter</a></li></ul>
+        </div>
+        <div>
+          <div class="text-[10px] tracking-[0.3em] uppercase mb-6 font-bold" style="color: var(--amber-lite);">Company</div>
+          <ul class="space-y-3"><li><a href="#" class="footer-link font-medium">About</a></li><li><a href="#" class="footer-link font-medium">Leadership</a></li><li><a href="#" class="footer-link font-medium">Careers</a></li><li><a href="#" class="footer-link font-medium">Campus</a></li><li><a href="#" class="footer-link font-medium">Foundation</a></li></ul>
+        </div>
+        <div>
+          <div class="text-[10px] tracking-[0.3em] uppercase mb-6 font-bold" style="color: var(--amber-lite);">Connect</div>
+          <ul class="space-y-3"><li><a href="#" class="footer-link font-medium">LinkedIn</a></li><li><a href="#" class="footer-link font-medium">Instagram</a></li><li><a href="#" class="footer-link font-medium">X (Twitter)</a></li><li><a href="#" class="footer-link font-medium">YouTube</a></li><li><a href="#" class="footer-link font-medium">RSS</a></li></ul>
+        </div>
+      </div>
+    </div>
+    <div class="pt-8 border-t flex flex-col md:flex-row justify-between gap-4 text-xs font-medium" style="border-color: rgba(245,239,224,0.1); color: var(--ink-dim);">
+      <div>© 2026 The Gateway Corp — A Gateway Group company · Ahmedabad · Zoetermeer</div>
+      <div class="flex gap-5"><a href="#" class="hover:text-white transition">Privacy</a><a href="#" class="hover:text-white transition">Terms</a><a href="#" class="hover:text-white transition">Disclaimer</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Cursor glow
+  const cursorGlow = document.getElementById('cursor-glow');
+  document.addEventListener('mousemove', (e) => {
+    cursorGlow.style.left = (e.clientX - 225) + 'px';
+    cursorGlow.style.top = (e.clientY - 225) + 'px';
+  });
+
+  // Rotating word
+  const words = ['ideas.', 'insights.', 'impact.'];
+  let idx = 0;
+  const el = document.getElementById('rotating-word');
+  setInterval(() => {
+    idx = (idx + 1) % words.length;
+    el.style.animation = 'none';
+    el.offsetHeight;
+    el.textContent = words[idx];
+    el.style.animation = 'wordSlide 0.8s cubic-bezier(0.22, 1, 0.36, 1)';
+  }, 2400);
+
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.fade-in-up').forEach(el => el.classList.add('visible'));
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+  // Filter chip toggle
+  document.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      document.querySelectorAll('.filter-chip').forEach(c => {
+        c.classList.remove('active');
+        c.style.background = 'transparent';
+        c.style.borderColor = 'rgba(245,239,224,0.2)';
+        c.style.color = 'var(--ink-dim)';
+      });
+      chip.classList.add('active');
+      chip.style.background = 'var(--amber)';
+      chip.style.borderColor = 'var(--amber)';
+      chip.style.color = 'var(--bg)';
+    });
+  });
+</script>
+
+</body>
+</html>
